@@ -10,12 +10,12 @@ app = Flask(__name__)
 # Seleccionar la configuración según el entorno
 env = os.getenv('FLASK_ENV', 'development')
 if env == 'production':
+    # Habilitar CORS
+    CORS(app)
     app.config.from_object(ProductionConfig)
 else:
     app.config.from_object(DevelopmentConfig)
 
-# Habilitar CORS
-CORS(app)
 
 # Registrar las rutas
 app.register_blueprint(routes)
