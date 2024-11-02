@@ -1,0 +1,67 @@
+2024-11-02 17:39:55,007 INFO: Checking model status [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:57]
+2024-11-02 17:39:56,210 INFO: Model status: Stopped [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:59]
+2024-11-02 17:40:11,045 ERROR: An error occurred: 405 Method Not Allowed: The method is not allowed for the requested URL. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:16]
+Traceback (most recent call last):
+  File "c:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "c:\Python310\lib\site-packages\flask\app.py", line 854, in dispatch_request
+    self.raise_routing_exception(req)
+  File "c:\Python310\lib\site-packages\flask\app.py", line 463, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "c:\Python310\lib\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "c:\Python310\lib\site-packages\werkzeug\routing\map.py", line 624, in match
+    raise MethodNotAllowed(valid_methods=list(e.have_match_for)) from None
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+2024-11-02 17:40:16,981 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:45]
+2024-11-02 17:40:18,820 ERROR: Error in /stop-model endpoint [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:50]
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 46, in stop_model
+    StopModelUseCase().execute()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\stop_model_use_case.py", line 8, in execute
+    return self.label_repository.stop_model()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\repositories\label_repository.py", line 14, in stop_model
+    return self.rekognition_service.stop_model()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\aws_rekognition_service.py", line 28, in stop_model
+    response = self.client.stop_project_version(
+  File "c:\Python310\lib\site-packages\botocore\client.py", line 530, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "c:\Python310\lib\site-packages\botocore\client.py", line 964, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.errorfactory.ResourceInUseException: An error occurred (ResourceInUseException) when calling the StopProjectVersion operation: ProjectVersion arn:aws:rekognition:us-east-2:654654415025:project/Parking_lot/version/Parking_lot.2024-09-04T18.47.11/1725490031705 is STOPPED; cannot be stopped
+2024-11-02 17:45:24,674 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:45]
+2024-11-02 17:45:25,891 ERROR: Error in /stop-model endpoint [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:50]
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 46, in stop_model
+    StopModelUseCase().execute()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\stop_model_use_case.py", line 11, in execute
+    raise ModelAlreadyStoppedException("Model is already stopped")
+app.core.exceptions.ModelAlreadyStoppedException: Model is already stopped
+2024-11-02 17:46:06,005 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:45]
+2024-11-02 17:46:07,031 ERROR: Error in /stop-model endpoint [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:50]
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 46, in stop_model
+    StopModelUseCase().execute()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\stop_model_use_case.py", line 11, in execute
+    raise ModelAlreadyStoppedException("Model is already stopped")
+app.core.exceptions.ModelAlreadyStoppedException: Model is already stopped
+2024-11-02 17:47:00,764 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:45]
+2024-11-02 17:47:01,970 ERROR: Error in /stop-model endpoint [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:50]
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 46, in stop_model
+    StopModelUseCase().execute()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\stop_model_use_case.py", line 11, in execute
+    raise ModelAlreadyStoppedException("Model is already stopped")
+app.core.exceptions.ModelAlreadyStoppedException: Model is already stopped
+2024-11-02 17:47:35,280 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:45]
+2024-11-02 17:48:02,840 ERROR: Error in /stop-model endpoint [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:50]
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 46, in stop_model
+    StopModelUseCase().execute()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\stop_model_use_case.py", line 11, in execute
+    raise ModelAlreadyStoppedException("Model is already stopped")
+app.core.exceptions.ModelAlreadyStoppedException: Model is already stopped
+2024-11-02 17:50:02,944 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:49]
+2024-11-02 17:50:07,771 WARNING: Model is already stopped. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:54]
+2024-11-02 18:05:30,210 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:49]
+2024-11-02 18:05:31,340 WARNING: Model is already stopped. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:54]

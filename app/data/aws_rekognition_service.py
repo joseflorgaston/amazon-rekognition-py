@@ -1,13 +1,14 @@
 import boto3
-import os
 from app.interfaces.aws_rekognition_interface import RekognitionInterface
+from app.config.config import Config
 
 class AwsRekognitionService(RekognitionInterface):
     def __init__(self):
-        self.client = boto3.client('rekognition', region_name=os.getenv('AWS_REGION'))
-        self.project_arn = os.getenv('PROJECT_ARN')
-        self.model_arn = os.getenv('MODEL_ARN')
-        self.min_inference_units = int(os.getenv('MIN_INFERENCE_UNITS', 1))
+        self.client = boto3.client('rekognition', region_name=Config.AWS_REGION)
+        self.project_arn = Config.PROJECT_ARN
+        self.model_arn = Config.MODEL_ARN
+        self.min_inference_units = Config.MIN_INFERENCE_UNITS
+        self.version_name = Config.VERSION_NAME
 
     def detect_labels(self, image_bytes):
         response = self.client.detect_labels(
@@ -38,7 +39,7 @@ class AwsRekognitionService(RekognitionInterface):
             # Describe el estado del modelo
             response = self.client.describe_project_versions(
                 ProjectArn=self.project_arn,
-                VersionNames=[os.getenv('VERSION_NAME')]
+                VersionNames=[self.version_name]
             )
             # Obtener el estado del modelo
             model_status = response['ProjectVersionDescriptions'][0]['Status']
