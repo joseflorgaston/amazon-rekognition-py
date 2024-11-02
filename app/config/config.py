@@ -1,8 +1,24 @@
-from dotenv import load_dotenv
 import os
+from dotenv import load_dotenv
 
+# Cargar las variables del archivo .env
 load_dotenv()
 
 class Config:
-    AWS_REGION = os.getenv("AWS_REGION")
-    # Otras configuraciones
+    """Configuración base (general para todos los entornos)"""
+    DEBUG = os.getenv('FLASK_DEBUG', 'false').lower() == 'true'
+    AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
+    AWS_REGION = os.getenv('AWS_REGION')
+    PROJECT_ARN = os.getenv('PROJECT_ARN')
+    MODEL_ARN = os.getenv('MODEL_ARN')
+    MIN_INFERENCE_UNITS = int(os.getenv('MIN_INFERENCE_UNITS', 1))
+    VERSION_NAME = os.getenv('VERSION_NAME')
+
+class DevelopmentConfig(Config):
+    """Configuración específica para el entorno de desarrollo"""
+    DEBUG = True
+
+class ProductionConfig(Config):
+    """Configuración específica para el entorno de producción"""
+    DEBUG = False
