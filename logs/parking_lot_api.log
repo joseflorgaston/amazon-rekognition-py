@@ -65,3 +65,100 @@ app.core.exceptions.ModelAlreadyStoppedException: Model is already stopped
 2024-11-02 17:50:07,771 WARNING: Model is already stopped. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:54]
 2024-11-02 18:05:30,210 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:49]
 2024-11-02 18:05:31,340 WARNING: Model is already stopped. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:54]
+2024-11-02 18:28:35,910 INFO: Checking model status [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:64]
+2024-11-02 18:28:38,210 INFO: Model status: Stopped [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:66]
+2024-11-02 18:28:38,213 INFO: Checking model status [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:64]
+2024-11-02 18:28:38,989 INFO: Model status: Stopped [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:66]
+2024-11-02 18:28:39,001 WARNING: No image found in the request. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:15]
+2024-11-02 18:28:39,004 INFO: Received image for label detection [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:19]
+2024-11-02 18:28:39,773 ERROR: Error in /detect-labels endpoint [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:27]
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 22, in detect_labels
+    labels = DetectLabelsUseCase().execute(image)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\detect_label_use_case.py", line 8, in execute
+    labels = self.label_repository.detect_labels(image_bytes)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\repositories\label_repository.py", line 8, in detect_labels
+    return self.rekognition_service.detect_labels(image_bytes)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\aws_rekognition_service.py", line 14, in detect_labels
+    response = self.client.detect_labels(
+  File "C:\Python310\lib\site-packages\botocore\client.py", line 530, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "C:\Python310\lib\site-packages\botocore\client.py", line 964, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.errorfactory.AccessDeniedException: An error occurred (AccessDeniedException) when calling the DetectLabels operation: User: arn:aws:iam::654654415025:user/Jose.F is not authorized to perform: rekognition:DetectLabels because no identity-based policy allows the rekognition:DetectLabels action
+2024-11-02 18:28:39,783 INFO: Starting the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:34]
+2024-11-02 18:28:40,818 INFO: Model started successfully [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:36]
+2024-11-02 18:28:40,820 INFO: Starting the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:34]
+2024-11-02 18:28:41,797 INFO: Model started successfully [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:36]
+2024-11-02 18:28:41,802 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:49]
+2024-11-02 18:28:42,573 WARNING: Model is already stopped. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:54]
+2024-11-02 18:28:42,576 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:49]
+2024-11-02 18:28:43,459 WARNING: Model is already stopped. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:54]
+2024-11-02 18:34:25,136 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:49]
+2024-11-02 18:34:26,437 INFO: Model stopped successfully [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:51]
+2024-11-02 18:34:57,367 INFO: Checking model status [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:64]
+2024-11-02 18:34:58,322 INFO: Model status: Stopped [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:66]
+2024-11-02 18:34:58,325 INFO: Checking model status [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:64]
+2024-11-02 18:34:59,852 INFO: Model status: Stopped [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:66]
+2024-11-02 18:34:59,854 WARNING: No image found in the request. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:15]
+2024-11-02 18:34:59,856 INFO: Received image for label detection [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:19]
+2024-11-02 18:35:00,786 ERROR: Error in /detect-labels endpoint [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:27]
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 22, in detect_labels
+    labels = DetectLabelsUseCase().execute(image)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\detect_label_use_case.py", line 8, in execute
+    labels = self.label_repository.detect_labels(image_bytes)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\repositories\label_repository.py", line 8, in detect_labels
+    return self.rekognition_service.detect_labels(image_bytes)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\aws_rekognition_service.py", line 14, in detect_labels
+    response = self.client.detect_labels(
+  File "C:\Python310\lib\site-packages\botocore\client.py", line 530, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "C:\Python310\lib\site-packages\botocore\client.py", line 964, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.errorfactory.InvalidImageFormatException: An error occurred (InvalidImageFormatException) when calling the DetectLabels operation: Request has invalid image format
+2024-11-02 18:35:00,793 INFO: Starting the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:34]
+2024-11-02 18:35:01,788 INFO: Model started successfully [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:36]
+2024-11-02 18:35:01,790 INFO: Starting the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:34]
+2024-11-02 18:35:02,805 INFO: Model started successfully [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:36]
+2024-11-02 18:35:02,807 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:49]
+2024-11-02 18:35:03,613 WARNING: Model is already stopped. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:54]
+2024-11-02 18:35:03,616 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:49]
+2024-11-02 18:35:04,386 WARNING: Model is already stopped. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:54]
+2024-11-02 18:37:35,163 INFO: Checking model status [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:64]
+2024-11-02 18:37:36,317 INFO: Model status: Stopped [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:66]
+2024-11-02 18:37:36,320 INFO: Checking model status [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:64]
+2024-11-02 18:37:38,953 INFO: Model status: Stopped [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:66]
+2024-11-02 18:37:38,956 WARNING: No image found in the request. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:15]
+2024-11-02 18:37:38,959 INFO: Received image for label detection [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:19]
+2024-11-02 18:37:39,861 ERROR: Error in /detect-labels endpoint [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:27]
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 22, in detect_labels
+    labels = DetectLabelsUseCase().execute(image)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\detect_label_use_case.py", line 8, in execute
+    labels = self.label_repository.detect_labels(image_bytes)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\repositories\label_repository.py", line 8, in detect_labels
+    return self.rekognition_service.detect_labels(image_bytes)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\aws_rekognition_service.py", line 14, in detect_labels
+    response = self.client.detect_labels(
+  File "C:\Python310\lib\site-packages\botocore\client.py", line 530, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "C:\Python310\lib\site-packages\botocore\client.py", line 964, in _make_api_call
+    raise error_class(parsed_response, operation_name)
+botocore.errorfactory.InvalidImageFormatException: An error occurred (InvalidImageFormatException) when calling the DetectLabels operation: Request has invalid image format
+2024-11-02 18:37:39,868 INFO: Starting the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:34]
+2024-11-02 18:37:40,995 INFO: Model started successfully [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:36]
+2024-11-02 18:37:40,997 INFO: Starting the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:34]
+2024-11-02 18:37:42,039 INFO: Model started successfully [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:36]
+2024-11-02 18:37:42,042 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:49]
+2024-11-02 18:37:42,816 WARNING: Model is already stopped. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:54]
+2024-11-02 18:37:42,818 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:49]
+2024-11-02 18:37:43,575 WARNING: Model is already stopped. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:54]
+2024-11-02 18:38:22,988 INFO: Checking model status [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:64]
+2024-11-02 18:38:23,785 INFO: Model status: Stopped [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:66]
+2024-11-02 18:38:53,788 INFO: Checking model status [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:64]
+2024-11-02 18:38:54,704 INFO: Model status: Stopped [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:66]
+2024-11-02 18:40:06,613 INFO: Checking model status [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:64]
+2024-11-02 18:40:08,344 INFO: Model status: Running [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:66]
+2024-11-02 18:40:14,467 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:49]
+2024-11-02 18:40:15,472 INFO: Model stopped successfully [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py:51]
