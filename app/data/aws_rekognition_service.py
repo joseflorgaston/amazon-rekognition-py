@@ -11,12 +11,13 @@ class AwsRekognitionService(RekognitionInterface):
         self.version_name = Config.VERSION_NAME
 
     def detect_labels(self, image_bytes):
-        response = self.client.detect_labels(
+        response = self.client.detect_custom_labels(
+            ProjectVersionArn=self.model_arn,
             Image={'Bytes': image_bytes},
-            MaxLabels=10,
-            MinConfidence=80
+            MaxResults=10,
+            MinConfidence=60
         )
-        return response['Labels']
+        return response['CustomLabels']
     
     def start_model(self):
         response = self.client.start_project_version(

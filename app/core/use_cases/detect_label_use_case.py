@@ -6,4 +6,4 @@ class DetectLabelsUseCase:
 
     def execute(self, image_bytes):
         labels = self.label_repository.detect_labels(image_bytes)
-        return [{"Name": label["Name"], "Confidence": label["Confidence"]} for label in labels]
+        return labels

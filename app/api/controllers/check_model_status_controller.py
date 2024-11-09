@@ -5,7 +5,6 @@ def check_model_status_controller():
     try:
         use_case = CheckModelStatusUseCase()
         is_running = use_case.execute()
-        
         status = "encendido" if is_running else "apagado"
         return jsonify({"is_running": is_running, "message": f"El modelo está {status}"}), 200
     except Exception as e:
