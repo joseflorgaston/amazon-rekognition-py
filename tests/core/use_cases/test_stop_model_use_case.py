@@ -2,7 +2,7 @@ import unittest
 from unittest.mock import MagicMock, patch
 from app.core.use_cases.stop_model_use_case import StopModelUseCase
 from app.core.exceptions import ModelAlreadyStoppedException
-from app.data.repositories.label_repository import LabelRepository
+from app.data.repositories.label_repository import ParkingLotRepository
 
 class TestStopModelUseCase(unittest.TestCase):
     def setUp(self):

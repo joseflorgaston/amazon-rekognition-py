@@ -1,9 +1,9 @@
 from app.core.exceptions import ModelAlreadyStoppedException
-from app.data.repositories.label_repository import LabelRepository
+from app.data.repositories.label_repository import ParkingLotRepository
 
 class StopModelUseCase:
     def __init__(self):
-        self.label_repository = LabelRepository()
+        self.label_repository = ParkingLotRepository()
 
     def execute(self):
         # Comprobar si el modelo ya está detenido

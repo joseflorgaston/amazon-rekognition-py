@@ -374,3 +374,49 @@ Traceback (most recent call last):
 werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
 2024-11-08 23:05:58,906 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:23]
 2024-11-08 23:05:59,852 WARNING: Model is already stopped. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:28]
+2024-11-09 02:08:11,703 INFO: Checking model status [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:34]
+2024-11-09 02:08:12,822 INFO: Model status: Stopped [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:36]
+2024-11-11 01:17:09,363 ERROR: An error occurred: module 'datetime' has no attribute 'now' [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 32, in insert_parking_spot
+    return ParkingLotController.insert_parking_spot(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\parking_lot_controller.py", line 29, in insert_parking_spot
+    created_at=datetime.now()
+AttributeError: module 'datetime' has no attribute 'now'
+2024-11-11 01:23:57,169 ERROR: An error occurred: InsertParkingSpot.execute() missing 1 required positional argument: 'parking_spot' [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 32, in insert_parking_spot
+    return ParkingLotController.insert_parking_spot(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\parking_lot_controller.py", line 23, in insert_parking_spot
+    InsertParkingSpot.execute(
+TypeError: InsertParkingSpot.execute() missing 1 required positional argument: 'parking_spot'
+2024-11-11 01:24:29,295 ERROR: An error occurred: InsertParkingSpot.execute() missing 1 required positional argument: 'self' [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 32, in insert_parking_spot
+    return ParkingLotController.insert_parking_spot(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\parking_lot_controller.py", line 23, in insert_parking_spot
+    InsertParkingSpot.execute(
+TypeError: InsertParkingSpot.execute() missing 1 required positional argument: 'self'
+2024-11-11 01:59:01,849 ERROR: An error occurred: 'name' [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 32, in insert_parking_spot
+    return ParkingLotController.insert_parking_spot(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\parking_lot_controller.py", line 25, in insert_parking_spot
+    name=data['name'],
+KeyError: 'name'

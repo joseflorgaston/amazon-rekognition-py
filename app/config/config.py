@@ -14,6 +14,9 @@ class Config:
     MODEL_ARN = os.getenv('MODEL_ARN')
     MIN_INFERENCE_UNITS = int(os.getenv('MIN_INFERENCE_UNITS', 1))
     VERSION_NAME = os.getenv('VERSION_NAME')
+    PARKING_LOT_BUCKET_ARN = os.getenv('PARKING_LOT_BUCKET_ARN')
+    BUCKET_NAME = os.getenv('BUCKET_NAME')
+    MONGODB_URI = os.getenv('MONGODB_URI')
 
 class DevelopmentConfig(Config):
     """Configuración específica para el entorno de desarrollo"""
