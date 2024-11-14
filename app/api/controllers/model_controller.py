@@ -3,12 +3,12 @@ import io
 from flask import jsonify
 from PIL import Image, ImageDraw, UnidentifiedImageError
 from app.config.logging_config import logger
-from app.core.use_cases.start_model_use_case import StartModelUseCase
-from app.core.use_cases.stop_model_use_case import StopModelUseCase
-from app.core.use_cases.check_model_status_use_case import CheckModelStatusUseCase
+from app.core.helpers.image_helper import ImageHelper
+from app.core.use_cases.model_use_cases.start_model_use_case import StartModelUseCase
+from app.core.use_cases.model_use_cases.stop_model_use_case import StopModelUseCase
+from app.core.use_cases.model_use_cases.check_model_status_use_case import CheckModelStatusUseCase
 from app.core.exceptions import ModelAlreadyRunningException, ModelAlreadyStoppedException
-from app.core.use_cases.detect_label_use_case import DetectLabelsUseCase
-from app.core.use_cases.draw_label_to_image_use_case import DrawLabelToImageUseCase
+from app.core.use_cases.model_use_cases.detect_label_use_case import DetectLabelsUseCase
 
 class ModelController:
     @staticmethod
@@ -38,7 +38,7 @@ class ModelController:
                 free_count += (label_name == 'free')
                 occupied_count += (label_name == 'occupied')
                 box = label['Geometry']['BoundingBox']
-                DrawLabelToImageUseCase.execute(image, draw, color, box)
+                ImageHelper.draw_label_to_image(image, draw, color, box)
 
                 
 

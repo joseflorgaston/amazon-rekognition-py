@@ -1,0 +1,45 @@
+from bson import ObjectId
+from flask import jsonify
+from app.config.mongo_client import get_mongo_client
+from app.core.models.image_data import ImageData
+from app.interfaces.aws_rekognition_interface import RekognitionInterface
+
+class ImageService(RekognitionInterface):
+    def __init__(self):
+        self.db_client = get_mongo_client()
+
+    # Inserta una nueva imagen de una camara especifica en la base de datos.
+    def insert_image(self, image: ImageData):
+        try:
+            image = {
+                "parking_spot_id": image.parking_spot_id,
+                "camera_id": image.camera_id,
+                "labeled_image_url": image.labeled_image_url,
+                "original_image_url": image.original_image_url,
+                "free_spaces": image.free_spaces,
+                "occupied_spaces": image.occupied_spaces,
+                "date": image.date
+            }
+            result = self.db_client["parking-lot"]["images"].insert_one(image)
+            return jsonify({"success": True, "id": str(result.inserted_id), "message": "Camera created successfully"}), 201
+        except Exception as e:
+            print(f"Error al insertar la imagen: {e}")
+            return jsonify({"success": False, "error": "Failed to insert image"}), 500
+
+    # Elimina una imagen en la base de datos.
+    def delete_image(self, image_id: str):
+        try:
+            # Convertir image_id a ObjectId
+            image_object_id = ObjectId(image_id)
+            
+            # Intentar eliminar el documento en la colección de imágenes
+            result = self.db_client["parking-lot"]["images"].delete_one({"_id": image_object_id})
+            
+            # Verificar si se eliminó el documento
+            if result.deleted_count == 1:
+                return jsonify({"success": True, "message": "Image deleted successfully"}), 200
+            else:
+                return jsonify({"success": False, "error": "Image not found"}), 404
+        except Exception as e:
+            print(f"Error al eliminar la imagen: {e}")
+            return jsonify({"success": False, "error": "Failed to delete image"}), 500
