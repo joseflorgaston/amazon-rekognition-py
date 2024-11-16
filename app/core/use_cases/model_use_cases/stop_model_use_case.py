@@ -6,10 +6,5 @@ class StopModelUseCase:
         self.model_repository = ModelRepository()
 
     def execute(self):
-        # Comprobar si el modelo ya está detenido
-        if not self.model_repository.is_model_running():
-            raise ModelAlreadyStoppedException("Model is already stopped")
-
-        # Detener el modelo
         response = self.model_repository.stop_model()
         return response

@@ -1,9 +1,9 @@
 from flask import jsonify
 from app.config.s3_client import get_s3_client
 from app.core.models.s3_image_data import S3ImageData
-from app.interfaces.aws_rekognition_interface import ModelInterface
+from app.interfaces.aws_interface import AwsInterface
 
-class AWSService(ModelInterface):
+class AWSService(AwsInterface):
     def __init__(self):
         self.s3_client = get_s3_client()
 
@@ -18,4 +18,5 @@ class AWSService(ModelInterface):
             )
             return jsonify({"success": True, "message": "Image uploaded to S3"})
         except Exception as e:
+            print(f"Failed to upload image: {e}")
             return jsonify({"success": False, "message": f"Failed to upload image to S3: {e}"}), 500

@@ -1,5 +1,7 @@
 
 from datetime import datetime
+from io import BytesIO
+from PIL import Image
 import uuid
 from flask import current_app, jsonify
 from app.core.models.draw_labels_data import DrawLabelsData
@@ -19,35 +21,48 @@ class ImageController:
     
     @staticmethod
     def insert_image(data):
-        if 'base64Image' not in data or 'parkingSpotID' not in data or 'cameraID' not in data:
+        if 'image' not in data or 'parking_spot_id' not in data or 'camera_id' not in data or 'max_results' not in data:
             return jsonify({"success": False, "error": "Missing required fields"}), 400
-
-        # Decodificar la imagen en base64
-        image_data = ImageHelper().decode_base64_image(data['base64Image'])
-
-        # Configurar nombre de archivo único
+        
+        image_data = ImageHelper().decode_base64_image(data['image'])
+        
         bucket_name = current_app.config['BUCKET_NAME']
         timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
         unique_id = uuid.uuid4().hex
-        labeled_file_name = f"{data['parkingSpotID']}_{data['cameraID']}_{timestamp}_{unique_id}_labeled.png"
-        original_file_name = f"{data['parkingSpotID']}_{data['cameraID']}_{timestamp}_{unique_id}_original.png"
+        labeled_file_name = f"labeled/{data['parking_spot_id']}_{data['camera_id']}_{timestamp}_{unique_id}.png"
+        original_file_name = f"original/{data['parking_spot_id']}_{data['camera_id']}_{timestamp}_{unique_id}.png"
 
         # Upload original image to s3
         UploadImageToS3UseCase().execute(
-            S3ImageData(image_data=image_data, file_name=original_file_name, bucket_name=bucket_name)
+            S3ImageData(
+                image_data = image_data, 
+                file_name = original_file_name, 
+                bucket_name = bucket_name, 
+                max_results = data['max_results']
+            )
         )
 
         labels = DetectLabelsUseCase().execute(image_data)
+        
+        image_pil = Image.open(BytesIO(image_data))
         image_labeled = ImageHelper().draw_labels_to_image(
-            draw_label= DrawLabelsData(
-                image= image_data,
+            DrawLabelsData(
+                image= image_pil,
                 labels= labels
             )
         )
 
+        # Convertir la imagen etiquetada (PIL) a bytes
+        image_labeled_bytes = ImageHelper.pil_image_to_bytes(image_labeled.image)
+
         # Upload labeled image to s3
         UploadImageToS3UseCase().execute(
-            S3ImageData(image_data=image_labeled.image, file_name=labeled_file_name, bucket_name=bucket_name)
+            S3ImageData(
+                image_data= image_labeled_bytes, 
+                file_name= labeled_file_name, 
+                bucket_name= bucket_name, 
+                max_results= data['max_results']
+            )
         )
         
         # Construir URL de la imagen
@@ -55,24 +70,26 @@ class ImageController:
         original_image_url = f"https://{bucket_name}.s3.{current_app.config['AWS_REGION']}.amazonaws.com/{original_file_name}"
 
         InsertImageUseCase().execute(
-            image_data= ImageData(
+            image= ImageData(
                 parking_spot_id= data['parking_spot_id'],
                 camera_id= data['camera_id'],
                 labeled_image_url= labeled_image_url,
                 original_image_url= original_image_url,
-                free_count=image_labeled.free_spaces,
-                occupied_count=image_labeled.occupied_spaces,
+                free_spaces= image_labeled.free_spaces,
+                occupied_spaces= image_labeled.occupied_spaces,
                 date= datetime.now()
             )
         )
+        
+        print('Image inserted to database')
 
         # Responder con el URL de la imagen y los datos recibidos
         return jsonify({
             "success": True,
             "labeled_image_url": labeled_image_url,
             "original_image_url": original_image_url,
-            "parkingSpotID": data['parkingSpotID'],
-            "cameraID": data['cameraID'],
+            "parking_spot_id": data['parking_spot_id'],
+            "camera_id": data['camera_id'],
             "labeled_file_name": labeled_file_name,
             "original_file_name": original_file_name,
             "message": "Image inserted successfully",

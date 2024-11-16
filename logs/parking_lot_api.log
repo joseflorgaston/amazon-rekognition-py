@@ -549,3 +549,244 @@ werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not 
 2024-11-16 01:44:06,768 INFO: Model status: Stopped [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:83]
 2024-11-16 01:44:11,430 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:70]
 2024-11-16 01:44:11,433 WARNING: Model is already stopped. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:75]
+2024-11-16 14:18:25,323 INFO: Starting the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:59]
+2024-11-16 14:18:25,628 ERROR: An error occurred: 'ModelService' object has no attribute 'model_arn' [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 16, in start_model
+    return ModelController.start_model()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py", line 60, in start_model
+    StartModelUseCase().execute()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\model_use_cases\start_model_use_case.py", line 14, in execute
+    response = self.model_repository.start_model()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\repositories\model_repository\model_repository.py", line 11, in start_model
+    return self.model_service.start_model()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py", line 22, in start_model
+    ProjectVersionArn=self.model_arn,
+AttributeError: 'ModelService' object has no attribute 'model_arn'
+2024-11-16 14:19:37,996 INFO: Starting the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:59]
+2024-11-16 14:19:38,144 ERROR: An error occurred: 'ModelService' object has no attribute 'min_inference_units' [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 16, in start_model
+    return ModelController.start_model()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py", line 60, in start_model
+    StartModelUseCase().execute()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\model_use_cases\start_model_use_case.py", line 14, in execute
+    response = self.model_repository.start_model()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\repositories\model_repository\model_repository.py", line 11, in start_model
+    return self.model_service.start_model()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py", line 24, in start_model
+    MinInferenceUnits=self.min_inference_units
+AttributeError: 'ModelService' object has no attribute 'min_inference_units'
+2024-11-16 14:37:38,275 INFO: Starting the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:59]
+2024-11-16 14:37:40,393 INFO: Model started successfully [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:61]
+2024-11-16 15:09:04,477 ERROR: An error occurred: Can't instantiate abstract class AWSService with abstract methods detect_labels, is_model_running, start_model, stop_model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 88, in insert_image
+    return ImageController.insert_image(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\image_controller.py", line 35, in insert_image
+    UploadImageToS3UseCase().execute(
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\image_use_cases\upload_image_to_s3.py", line 6, in __init__
+    self.aws_repository = AwsRepository()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\repositories\aws_repository\aws_repository.py", line 6, in __init__
+    self.aws_service = aws_service or AWSService()
+TypeError: Can't instantiate abstract class AWSService with abstract methods detect_labels, is_model_running, start_model, stop_model
+2024-11-16 15:12:15,993 ERROR: An error occurred: ImageHelper.draw_labels_to_image() got an unexpected keyword argument 'draw_label' [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 88, in insert_image
+    return ImageController.insert_image(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\image_controller.py", line 46, in insert_image
+    image_labeled = ImageHelper().draw_labels_to_image(
+TypeError: ImageHelper.draw_labels_to_image() got an unexpected keyword argument 'draw_label'
+2024-11-16 15:17:09,230 ERROR: An error occurred: 'tuple' object has no attribute 'image' [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 88, in insert_image
+    return ImageController.insert_image(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\image_controller.py", line 60, in insert_image
+    S3ImageData(image_data=image_labeled.image, file_name=labeled_file_name, bucket_name=bucket_name)
+AttributeError: 'tuple' object has no attribute 'image'
+2024-11-16 15:18:33,203 ERROR: An error occurred: 'tuple' object has no attribute 'image' [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 88, in insert_image
+    return ImageController.insert_image(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\image_controller.py", line 61, in insert_image
+    S3ImageData(image_data=image_labeled.image, file_name=labeled_file_name, bucket_name=bucket_name)
+AttributeError: 'tuple' object has no attribute 'image'
+2024-11-16 15:20:27,300 ERROR: An error occurred: Failed to draw label in image: 'bytes' object has no attribute 'load' [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\PIL\ImageDraw.py", line 865, in Draw
+    return im.getdraw(mode)
+AttributeError: 'bytes' object has no attribute 'getdraw'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\helpers\image_helper.py", line 30, in draw_labels_to_image
+    draw = ImageDraw.Draw(draw_labels_data.image)
+  File "C:\Python310\lib\site-packages\PIL\ImageDraw.py", line 867, in Draw
+    return ImageDraw(im, mode)
+  File "C:\Python310\lib\site-packages\PIL\ImageDraw.py", line 64, in __init__
+    im.load()
+AttributeError: 'bytes' object has no attribute 'load'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 88, in insert_image
+    return ImageController.insert_image(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\image_controller.py", line 49, in insert_image
+    image_labeled = ImageHelper().draw_labels_to_image(
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\helpers\image_helper.py", line 45, in draw_labels_to_image
+    raise RuntimeError(f"Failed to draw label in image: {e}")
+RuntimeError: Failed to draw label in image: 'bytes' object has no attribute 'load'
+2024-11-16 15:22:30,184 ERROR: An error occurred: Parameter validation failed:
+Invalid type for parameter Image.Bytes, value: <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=1280x720 at 0x228DFE0C910>, type: <class 'PIL.JpegImagePlugin.JpegImageFile'>, valid types: <class 'bytes'>, <class 'bytearray'>, file-like object [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 88, in insert_image
+    return ImageController.insert_image(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\image_controller.py", line 45, in insert_image
+    labels = DetectLabelsUseCase().execute(image_data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\model_use_cases\detect_label_use_case.py", line 8, in execute
+    labels = self.model_repository.detect_labels(image_bytes)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\repositories\model_repository\model_repository.py", line 8, in detect_labels
+    return self.model_service.detect_labels(image_bytes)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py", line 13, in detect_labels
+    response = self.aws_client.detect_custom_labels(
+  File "C:\Python310\lib\site-packages\botocore\client.py", line 530, in _api_call
+    return self._make_api_call(operation_name, kwargs)
+  File "C:\Python310\lib\site-packages\botocore\client.py", line 923, in _make_api_call
+    request_dict = self._convert_to_request_dict(
+  File "C:\Python310\lib\site-packages\botocore\client.py", line 991, in _convert_to_request_dict
+    request_dict = self._serializer.serialize_to_request(
+  File "C:\Python310\lib\site-packages\botocore\validate.py", line 381, in serialize_to_request
+    raise ParamValidationError(report=report.generate_report())
+botocore.exceptions.ParamValidationError: Parameter validation failed:
+Invalid type for parameter Image.Bytes, value: <PIL.JpegImagePlugin.JpegImageFile image mode=RGB size=1280x720 at 0x228DFE0C910>, type: <class 'PIL.JpegImagePlugin.JpegImageFile'>, valid types: <class 'bytes'>, <class 'bytearray'>, file-like object
+2024-11-16 15:26:00,406 ERROR: An error occurred: ImageHelper.decode_base64_image() takes 1 positional argument but 2 were given [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 88, in insert_image
+    return ImageController.insert_image(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\image_controller.py", line 25, in insert_image
+    image_data = ImageHelper().decode_base64_image(data['image'])
+TypeError: ImageHelper.decode_base64_image() takes 1 positional argument but 2 were given
+2024-11-16 15:26:23,713 ERROR: An error occurred: Failed to draw label in image: 'bytes' object has no attribute 'load' [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\PIL\ImageDraw.py", line 865, in Draw
+    return im.getdraw(mode)
+AttributeError: 'bytes' object has no attribute 'getdraw'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\helpers\image_helper.py", line 28, in draw_labels_to_image
+    draw = ImageDraw.Draw(draw_labels_data.image)
+  File "C:\Python310\lib\site-packages\PIL\ImageDraw.py", line 867, in Draw
+    return ImageDraw(im, mode)
+  File "C:\Python310\lib\site-packages\PIL\ImageDraw.py", line 64, in __init__
+    im.load()
+AttributeError: 'bytes' object has no attribute 'load'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 88, in insert_image
+    return ImageController.insert_image(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\image_controller.py", line 50, in insert_image
+    image_labeled = ImageHelper().draw_labels_to_image(
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\helpers\image_helper.py", line 43, in draw_labels_to_image
+    raise RuntimeError(f"Failed to draw label in image: {e}")
+RuntimeError: Failed to draw label in image: 'bytes' object has no attribute 'load'
+2024-11-16 15:29:50,410 ERROR: An error occurred: S3ImageData.__init__() missing 1 required positional argument: 'max_results' [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 88, in insert_image
+    return ImageController.insert_image(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\image_controller.py", line 65, in insert_image
+    S3ImageData(image_data=image_labeled.image, file_name=labeled_file_name, bucket_name=bucket_name)
+TypeError: S3ImageData.__init__() missing 1 required positional argument: 'max_results'
+2024-11-16 15:31:55,235 ERROR: An error occurred: ImageData.__init__() got an unexpected keyword argument 'free_count' [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 88, in insert_image
+    return ImageController.insert_image(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\image_controller.py", line 78, in insert_image
+    image_data= ImageData(
+TypeError: ImageData.__init__() got an unexpected keyword argument 'free_count'
+2024-11-16 15:33:20,269 ERROR: An error occurred: InsertImageUseCase.execute() got an unexpected keyword argument 'image_data' [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 88, in insert_image
+    return ImageController.insert_image(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\image_controller.py", line 77, in insert_image
+    InsertImageUseCase().execute(
+TypeError: InsertImageUseCase.execute() got an unexpected keyword argument 'image_data'
+2024-11-16 15:56:42,444 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:70]
+2024-11-16 15:56:42,447 WARNING: Model is already stopped. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:75]
+2024-11-16 15:57:06,328 INFO: Checking model status [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:81]
+2024-11-16 15:57:06,332 INFO: Model status: Stopped [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:83]
+2024-11-16 16:01:59,152 ERROR: Error in /model-status endpoint [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:49]
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py", line 42, in is_model_running
+    ProjectArn=self.project_arn,
+AttributeError: 'ModelService' object has no attribute 'project_arn'
+2024-11-16 16:02:57,600 INFO: Model status: RUNNING [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:48]
+2024-11-16 16:03:15,273 INFO: Model status: RUNNING [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:48]
+2024-11-16 16:06:34,901 INFO: Model status: RUNNING [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:58]
+2024-11-16 16:06:34,901 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:37]
+2024-11-16 16:06:35,125 INFO: Model stopped successfully [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:41]
+2024-11-16 16:06:42,065 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:58]
+2024-11-16 16:06:42,066 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:37]
+2024-11-16 16:06:42,275 WARNING: Error in /model/stop endpoint [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:47]
+2024-11-16 16:07:17,512 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:37]
+2024-11-16 16:07:17,513 WARNING: Error in /model/stop endpoint [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:51]
+2024-11-16 16:07:50,474 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:37]
+2024-11-16 16:07:51,403 WARNING: Error in /model/stop endpoint [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:47]
+2024-11-16 16:11:38,090 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:61]

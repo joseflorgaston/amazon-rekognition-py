@@ -2,9 +2,9 @@ from bson import ObjectId
 from flask import jsonify
 from app.config.mongo_client import get_mongo_client
 from app.core.models.image_data import ImageData
-from app.interfaces.aws_rekognition_interface import ModelInterface
+from app.interfaces.image_interface import ImageInterface
 
-class ImageService(ModelInterface):
+class ImageService(ImageInterface):
     def __init__(self):
         self.db_client = get_mongo_client()
 
