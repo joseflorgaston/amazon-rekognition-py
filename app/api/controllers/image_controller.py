@@ -9,9 +9,14 @@ from app.core.use_cases.image_use_cases.delete_image_use_case import DeleteImage
 from app.core.use_cases.model_use_cases.detect_label_use_case import DetectLabelsUseCase
 from app.core.use_cases.image_use_cases.upload_image_to_s3 import UploadImageToS3UseCase
 from app.core.use_cases.image_use_cases.insert_image_use_case import InsertImageUseCase
+from app.core.use_cases.image_use_cases.get_last_image_use_case import GetLastImageUseCase
 from app.core.helpers.image_helper import ImageHelper
 
 class ImageController:
+    @staticmethod
+    def get_last_image(camera_id: str):
+        return GetLastImageUseCase().execute(camera_id)
+    
     @staticmethod
     def insert_image(data):
         if 'base64Image' not in data or 'parkingSpotID' not in data or 'cameraID' not in data:
@@ -74,10 +79,5 @@ class ImageController:
         }), 200
 
     @staticmethod
-    def delete_image(image_id):
-        DeleteImageUseCase().execute(image_id)
-
-        return jsonify({
-            "success": True,
-            "message": "Image deleted successfully",
-        }), 200
+    def delete_image(image_id: str):
+        return DeleteImageUseCase().execute(image_id)

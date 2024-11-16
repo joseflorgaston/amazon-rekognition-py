@@ -2,11 +2,34 @@ from bson import ObjectId
 from flask import jsonify
 from app.config.mongo_client import get_mongo_client
 from app.core.models.image_data import ImageData
-from app.interfaces.aws_rekognition_interface import RekognitionInterface
+from app.interfaces.aws_rekognition_interface import ModelInterface
 
-class ImageService(RekognitionInterface):
+class ImageService(ModelInterface):
     def __init__(self):
         self.db_client = get_mongo_client()
+
+    # Retorna la ultima imagen guardada en la base de datos de una camara especifica:
+    def get_last_image(self, camera_id: str):
+        try:
+            camera_object_id = ObjectId(camera_id)
+            collection = self.db_client['images']
+
+            last_image = collection.find_one(
+                {"camera_id": camera_object_id},
+                sort=[("created_at", -1)]
+            )
+
+            # Check if an image was found
+            if last_image:
+                last_image["_id"] = str(last_image["_id"])
+                last_image["camera_id"] = str(last_image["camera_id"])
+                return jsonify({"data": last_image, "success": True, "message": "Last image retrieved successfully"}), 200
+            else:
+                return jsonify({"success": False, "message": "No images found for the given camera"}), 404
+            
+        except Exception as e:
+            print(f"Error retrieving last image: {e}")
+            return jsonify({"success": False, "error": "Failed to get image"}), 500
 
     # Inserta una nueva imagen de una camara especifica en la base de datos.
     def insert_image(self, image: ImageData):

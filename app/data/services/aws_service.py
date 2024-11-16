@@ -1,9 +1,9 @@
 from flask import jsonify
 from app.config.s3_client import get_s3_client
 from app.core.models.s3_image_data import S3ImageData
-from app.interfaces.aws_rekognition_interface import RekognitionInterface
+from app.interfaces.aws_rekognition_interface import ModelInterface
 
-class AWSService(RekognitionInterface):
+class AWSService(ModelInterface):
     def __init__(self):
         self.s3_client = get_s3_client()
 

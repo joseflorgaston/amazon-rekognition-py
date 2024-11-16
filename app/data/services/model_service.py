@@ -1,8 +1,8 @@
 import boto3
 from app.config.config import Config
-from app.interfaces.aws_rekognition_interface import RekognitionInterface
+from app.interfaces.aws_rekognition_interface import ModelInterface
 
-class ModelService(RekognitionInterface):
+class ModelService(ModelInterface):
     def __init__(self):
         self.aws_client = boto3.client('rekognition', region_name=Config.AWS_REGION)
 

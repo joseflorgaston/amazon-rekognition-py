@@ -420,3 +420,132 @@ Traceback (most recent call last):
   File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\parking_lot_controller.py", line 25, in insert_parking_spot
     name=data['name'],
 KeyError: 'name'
+2024-11-15 22:43:05,409 ERROR: An error occurred: Can't instantiate abstract class CameraService with abstract method detect_labels [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 37, in insert_parking_spot
+    return ParkingSpotController.insert_parking_spot(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\parking_spot_controller.py", line 21, in insert_parking_spot
+    return InsertCameraUseCase().execute(
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\camera_use_cases\insert_camera_use_case.py", line 7, in __init__
+    self.camera_repository = CameraRepository()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\repositories\camera_repository\camera_repository.py", line 6, in __init__
+    self.camera_service = camera_service or CameraService()
+TypeError: Can't instantiate abstract class CameraService with abstract method detect_labels
+2024-11-15 22:46:51,027 ERROR: An error occurred: Can't instantiate abstract class CameraService with abstract method detect_labels [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 37, in insert_parking_spot
+    return ParkingSpotController.insert_parking_spot(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\parking_spot_controller.py", line 21, in insert_parking_spot
+    return InsertCameraUseCase().execute(
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\camera_use_cases\insert_camera_use_case.py", line 7, in __init__
+    self.camera_repository = CameraRepository()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\repositories\camera_repository\camera_repository.py", line 6, in __init__
+    self.camera_service = camera_service or CameraService()
+TypeError: Can't instantiate abstract class CameraService with abstract method detect_labels
+2024-11-15 22:48:42,254 ERROR: An error occurred: Can't instantiate abstract class ParkingSpotService with abstract method detect_labels [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 37, in insert_parking_spot
+    return ParkingSpotController.insert_parking_spot(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\parking_spot_controller.py", line 22, in insert_parking_spot
+    return InsertParkingSpotUseCase().execute(
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\parking_spot_use_cases\insert_parking_spot_use_case.py", line 6, in __init__
+    self.parking_spot_repository = ParkingSpotRepository()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\repositories\parking_spot_repository\parking_spot_repository.py", line 6, in __init__
+    self.parking_spot_service = ParkingSpotService()
+TypeError: Can't instantiate abstract class ParkingSpotService with abstract method detect_labels
+2024-11-15 22:51:49,168 ERROR: An error occurred: Can't instantiate abstract class ParkingSpotService with abstract method delete_parking_spor [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 37, in insert_parking_spot
+    return ParkingSpotController.insert_parking_spot(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\parking_spot_controller.py", line 22, in insert_parking_spot
+    return InsertParkingSpotUseCase().execute(
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\parking_spot_use_cases\insert_parking_spot_use_case.py", line 6, in __init__
+    self.parking_spot_repository = ParkingSpotRepository()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\repositories\parking_spot_repository\parking_spot_repository.py", line 6, in __init__
+    self.parking_spot_service = ParkingSpotService()
+TypeError: Can't instantiate abstract class ParkingSpotService with abstract method delete_parking_spor
+2024-11-15 22:52:15,677 ERROR: An error occurred: 'parking_spot_id' [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 37, in insert_parking_spot
+    return ParkingSpotController.insert_parking_spot(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\parking_spot_controller.py", line 24, in insert_parking_spot
+    name= data['parking_spot_id'],
+KeyError: 'parking_spot_id'
+2024-11-15 23:54:06,414 ERROR: An error occurred: 405 Method Not Allowed: The method is not allowed for the requested URL. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 854, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Python310\lib\site-packages\flask\app.py", line 463, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "C:\Python310\lib\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "C:\Python310\lib\site-packages\werkzeug\routing\map.py", line 624, in match
+    raise MethodNotAllowed(valid_methods=list(e.have_match_for)) from None
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+2024-11-16 00:16:28,360 ERROR: An error occurred: Can't instantiate abstract class CameraService with abstract method detect_labels [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 54, in get_cameras
+    return CameraController.get_cameras()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\camera_controller.py", line 14, in get_cameras
+    return GetCamerasUseCase().execute()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\camera_use_cases\get_cameras_use_case.py", line 5, in __init__
+    self.camera_repository = CameraRepository()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\repositories\camera_repository\camera_repository.py", line 6, in __init__
+    self.camera_service = camera_service or CameraService()
+TypeError: Can't instantiate abstract class CameraService with abstract method detect_labels
+2024-11-16 01:35:44,483 ERROR: An error occurred: 405 Method Not Allowed: The method is not allowed for the requested URL. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 854, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Python310\lib\site-packages\flask\app.py", line 463, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "C:\Python310\lib\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "C:\Python310\lib\site-packages\werkzeug\routing\map.py", line 624, in match
+    raise MethodNotAllowed(valid_methods=list(e.have_match_for)) from None
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+2024-11-16 01:43:57,562 ERROR: An error occurred: 405 Method Not Allowed: The method is not allowed for the requested URL. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 854, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Python310\lib\site-packages\flask\app.py", line 463, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "C:\Python310\lib\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "C:\Python310\lib\site-packages\werkzeug\routing\map.py", line 624, in match
+    raise MethodNotAllowed(valid_methods=list(e.have_match_for)) from None
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+2024-11-16 01:44:06,465 INFO: Checking model status [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:81]
+2024-11-16 01:44:06,768 INFO: Model status: Stopped [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:83]
+2024-11-16 01:44:11,430 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:70]
+2024-11-16 01:44:11,433 WARNING: Model is already stopped. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\model_controller.py:75]
