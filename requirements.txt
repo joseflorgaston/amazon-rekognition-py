@@ -4,3 +4,4 @@ pymongo==4.10.1
 boto3==1.26.151
 python-dotenv==1.0.0
 Pillow==9.5.0
+gunicorn==23.0.0
