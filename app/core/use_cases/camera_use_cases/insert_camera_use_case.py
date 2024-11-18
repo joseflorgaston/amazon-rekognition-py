@@ -1,4 +1,3 @@
-from bson import ObjectId
 from app.core.models.parking_spot_data import ParkingSpotData
 from app.data.repositories.camera_repository.camera_repository import CameraRepository
 
