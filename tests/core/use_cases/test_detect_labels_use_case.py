@@ -1,11 +1,11 @@
 import unittest
 from unittest.mock import MagicMock
 from app.core.use_cases.detect_labels_use_case import DetectLabelsUseCase
-from app.data.repositories.label_repository import LabelRepository
+from app.data.repositories.label_repository import ParkingLotRepository
 
 class TestDetectLabelsUseCase(unittest.TestCase):
     def setUp(self):
-        self.label_repository = LabelRepository()
+        self.label_repository = ParkingLotRepository()
         self.use_case = DetectLabelsUseCase()
         self.use_case.label_repository = MagicMock()
 

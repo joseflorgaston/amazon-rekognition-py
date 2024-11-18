@@ -14,6 +14,7 @@ if env == 'production':
     CORS(app)
     app.config.from_object(ProductionConfig)
 else:
+    CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
     app.config.from_object(DevelopmentConfig)
 
 

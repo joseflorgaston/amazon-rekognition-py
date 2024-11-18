@@ -1,10 +1,10 @@
 import unittest
 from unittest.mock import patch, MagicMock
-from app.data.repositories.label_repository import LabelRepository
+from app.data.repositories.label_repository import ParkingLotRepository
 
 class TestLabelRepository(unittest.TestCase):
     def setUp(self):
-        self.repository = LabelRepository()
+        self.repository = ParkingLotRepository()
 
     @patch('app.data.repositories.label_repository.boto3.client')
     def test_detect_labels_success(self, mock_boto_client):

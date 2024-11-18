@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import MagicMock
-from app.core.use_cases.check_model_status_use_case import CheckModelStatusUseCase
-from app.data.repositories.label_repository import LabelRepository
+from app.core.use_cases.model_use_cases.check_model_status_use_case import CheckModelStatusUseCase
+from app.data.repositories.label_repository import ParkingLotRepository
 
 class TestCheckModelStatusUseCase(unittest.TestCase):
     def setUp(self):

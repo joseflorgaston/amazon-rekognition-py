@@ -1,8 +1,8 @@
 import unittest
 from unittest.mock import MagicMock, patch
-from app.core.use_cases.start_model_use_case import StartModelUseCase
+from app.core.use_cases.model_use_cases.start_model_use_case import StartModelUseCase
 from app.core.exceptions import ModelAlreadyRunningException
-from app.data.repositories.label_repository import LabelRepository
+from app.data.repositories.label_repository import ParkingLotRepository
 
 class TestStartModelUseCase(unittest.TestCase):
     def setUp(self):
