@@ -1,3 +1,5 @@
+from app.api.controllers.auth_controller import AuthController
+from app.core.decorators import token_required
 from flask import Blueprint, request
 from app.api.controllers.aws_controller import AWSController
 from app.api.controllers.camera_controller import CameraController
@@ -10,6 +12,22 @@ routes = Blueprint('routes', __name__)
 def detect_labels():
     data = request.get_json()
     return ModelController.detect_labels(data)
+
+@routes.route('/login', methods=['POST'])
+def login_user():
+    data = request.get_json()
+    return AuthController.login(data)
+
+@routes.route('/register', methods=['POST'])
+def register_user():
+    data = request.get_json()
+    return AuthController.register_user(data)
+
+# Ruta para refrescar el token de acceso
+@routes.route('/refresh', methods=['POST'])
+def refresh():
+    data = request.get_json()
+    return AuthController.refresh(data)
 
 @routes.route('/model/start', methods=['POST'])
 def start_model():

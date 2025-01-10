@@ -11,6 +11,7 @@ class Config:
     AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
     AWS_REGION = os.getenv('AWS_REGION')
     PROJECT_ARN = os.getenv('PROJECT_ARN')
+    SECRET_KEY = os.getenv('SECRET_KEY')
     MODEL_ARN = os.getenv('MODEL_ARN')
     MIN_INFERENCE_UNITS = int(os.getenv('MIN_INFERENCE_UNITS', 1))
     VERSION_NAME = os.getenv('VERSION_NAME')
