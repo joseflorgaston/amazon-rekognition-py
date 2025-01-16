@@ -8,18 +8,30 @@ class CameraService(CameraInterface):
     def __init__(self):
         self.db_client = get_mongo_client()
         self.camera_client = self.db_client["parking-lot"]["cameras"]
+        self.parking_spot_client = self.db_client["parking-lot"]["parking_spot"]
 
-    # Retorna las camaras guardadas en la base de datos.
+    # Retorna las cámaras guardadas en la base de datos junto con sus parking spots
     def get_cameras(self):
         try:
             result = self.camera_client.find()
             cameras = list(result)
-            
+
+            enriched_cameras = []
             for camera in cameras:
                 camera["_id"] = str(camera["_id"])
                 camera["parking_spot_id"] = str(camera["parking_spot_id"])
 
-            return jsonify({"data": cameras, "success": True, "message": "Cameras retrieved successfully"}), 200
+                parking_spot = self.parking_spot_client.find_one({"_id": ObjectId(camera["parking_spot_id"])})
+                if parking_spot:
+                    parking_spot["_id"] = str(parking_spot["_id"])
+                    camera["parking_spot"] = parking_spot
+                else:
+                    # Si no se encuentra el parking spot, agregar un valor por defecto
+                    camera["parking_spot"] = None
+
+                enriched_cameras.append(camera)
+
+            return jsonify({"data": enriched_cameras, "success": True, "message": "Cameras retrieved successfully"}), 200
         except Exception as e:
             print(f"Error retrieving cameras: {e}")
             return jsonify({"success": False, "message": "Failed to retrieve cameras"}), 500

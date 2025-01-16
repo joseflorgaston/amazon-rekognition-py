@@ -7,14 +7,14 @@ from app.interfaces.image_interface import ImageInterface
 class ImageService(ImageInterface):
     def __init__(self):
         self.db_client = get_mongo_client()
+        self.image_client = self.db_client["parking-lot"]["images"]
 
     # Retorna la ultima imagen guardada en la base de datos de una camara especifica:
     def get_last_image(self, camera_id: str):
         try:
             camera_object_id = ObjectId(camera_id)
-            collection = self.db_client['images']
 
-            last_image = collection.find_one(
+            last_image = self.image_client.find_one(
                 {"camera_id": camera_object_id},
                 sort=[("created_at", -1)]
             )
@@ -23,10 +23,11 @@ class ImageService(ImageInterface):
             if last_image:
                 last_image["_id"] = str(last_image["_id"])
                 last_image["camera_id"] = str(last_image["camera_id"])
+                last_image["parking_spot_id"] = str(last_image["parking_spot_id"])
                 return jsonify({"data": last_image, "success": True, "message": "Last image retrieved successfully"}), 200
             else:
                 return jsonify({"success": False, "message": "No images found for the given camera"}), 404
-            
+
         except Exception as e:
             print(f"Error retrieving last image: {e}")
             return jsonify({"success": False, "error": "Failed to get image"}), 500
@@ -43,7 +44,7 @@ class ImageService(ImageInterface):
                 "occupied_spaces": image.occupied_spaces,
                 "date": image.date
             }
-            result = self.db_client["parking-lot"]["images"].insert_one(image)
+            result = self.image_client.insert_one(image)
             return jsonify({"success": True, "id": str(result.inserted_id), "message": "Camera created successfully"}), 201
         except Exception as e:
             print(f"Error al insertar la imagen: {e}")
@@ -56,7 +57,7 @@ class ImageService(ImageInterface):
             image_object_id = ObjectId(image_id)
             
             # Intentar eliminar el documento en la colección de imágenes
-            result = self.db_client["parking-lot"]["images"].delete_one({"_id": image_object_id})
+            result = self.image_client.delete_one({"_id": image_object_id})
             
             # Verificar si se eliminó el documento
             if result.deleted_count == 1:

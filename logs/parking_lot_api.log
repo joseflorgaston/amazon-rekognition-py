@@ -790,3 +790,133 @@ AttributeError: 'ModelService' object has no attribute 'project_arn'
 2024-11-16 16:07:50,474 INFO: Stopping the model [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:37]
 2024-11-16 16:07:51,403 WARNING: Error in /model/stop endpoint [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:47]
 2024-11-16 16:11:38,090 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:61]
+2024-11-18 21:34:54,365 ERROR: An error occurred: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 854, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Python310\lib\site-packages\flask\app.py", line 463, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "C:\Python310\lib\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "C:\Python310\lib\site-packages\werkzeug\routing\map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2024-11-19 16:38:12,365 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-19 18:14:07,413 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-19 18:14:25,443 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-19 18:14:35,448 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-19 19:23:36,138 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-20 10:10:36,773 ERROR: An error occurred: All nameservers failed to answer the query _mongodb._tcp.cluster0.t7ujr.mongodb.net. IN SRV: Server Do53:186.16.16.16@53 answered [WinError 10065] Se ha intentado una operación de socket en un host no accesible; Server Do53:186.17.17.17@53 answered [WinError 10065] Se ha intentado una operación de socket en un host no accesible [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 83, in get_last_image
+    return ImageController.get_last_image(camera_id)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\image_controller.py", line 20, in get_last_image
+    return GetLastImageUseCase().execute(camera_id)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\image_use_cases\get_last_image_use_case.py", line 5, in __init__
+    self.image_repository = ImageRepository()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\repositories\image_repository\image_repository.py", line 6, in __init__
+    self.image_service = image_service or ImageService()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\image_service.py", line 9, in __init__
+    self.db_client = get_mongo_client()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\config\mongo_client.py", line 6, in get_mongo_client
+    client = MongoClient(current_app.config['MONGODB_URI'])
+  File "C:\Python310\lib\site-packages\pymongo\synchronous\mongo_client.py", line 780, in __init__
+    res = uri_parser.parse_uri(
+  File "C:\Python310\lib\site-packages\pymongo\uri_parser.py", line 558, in parse_uri
+    nodes = dns_resolver.get_hosts()
+  File "C:\Python310\lib\site-packages\pymongo\srv_resolver.py", line 140, in get_hosts
+    _, nodes = self._get_srv_response_and_hosts(True)
+  File "C:\Python310\lib\site-packages\pymongo\srv_resolver.py", line 120, in _get_srv_response_and_hosts
+    results = self._resolve_uri(encapsulate_errors)
+  File "C:\Python310\lib\site-packages\pymongo\srv_resolver.py", line 114, in _resolve_uri
+    raise ConfigurationError(str(exc)) from None
+pymongo.errors.ConfigurationError: All nameservers failed to answer the query _mongodb._tcp.cluster0.t7ujr.mongodb.net. IN SRV: Server Do53:186.16.16.16@53 answered [WinError 10065] Se ha intentado una operación de socket en un host no accesible; Server Do53:186.17.17.17@53 answered [WinError 10065] Se ha intentado una operación de socket en un host no accesible
+2024-11-20 10:11:08,989 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-20 15:05:45,028 ERROR: An error occurred: The resolution lifetime expired after 21.616 seconds: Server Do53:186.16.16.16@53 answered The DNS operation timed out.; Server Do53:186.17.17.17@53 answered The DNS operation timed out.; Server Do53:186.16.16.16@53 answered The DNS operation timed out.; Server Do53:186.17.17.17@53 answered The DNS operation timed out.; Server Do53:186.16.16.16@53 answered The DNS operation timed out.; Server Do53:186.17.17.17@53 answered The DNS operation timed out.; Server Do53:186.16.16.16@53 answered The DNS operation timed out.; Server Do53:186.17.17.17@53 answered The DNS operation timed out.; Server Do53:186.16.16.16@53 answered The DNS operation timed out.; Server Do53:186.17.17.17@53 answered The DNS operation timed out. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 83, in get_last_image
+    return ImageController.get_last_image(camera_id)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\image_controller.py", line 20, in get_last_image
+    return GetLastImageUseCase().execute(camera_id)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\image_use_cases\get_last_image_use_case.py", line 5, in __init__
+    self.image_repository = ImageRepository()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\repositories\image_repository\image_repository.py", line 6, in __init__
+    self.image_service = image_service or ImageService()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\image_service.py", line 9, in __init__
+    self.db_client = get_mongo_client()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\config\mongo_client.py", line 6, in get_mongo_client
+    client = MongoClient(current_app.config['MONGODB_URI'])
+  File "C:\Python310\lib\site-packages\pymongo\synchronous\mongo_client.py", line 780, in __init__
+    res = uri_parser.parse_uri(
+  File "C:\Python310\lib\site-packages\pymongo\uri_parser.py", line 558, in parse_uri
+    nodes = dns_resolver.get_hosts()
+  File "C:\Python310\lib\site-packages\pymongo\srv_resolver.py", line 140, in get_hosts
+    _, nodes = self._get_srv_response_and_hosts(True)
+  File "C:\Python310\lib\site-packages\pymongo\srv_resolver.py", line 120, in _get_srv_response_and_hosts
+    results = self._resolve_uri(encapsulate_errors)
+  File "C:\Python310\lib\site-packages\pymongo\srv_resolver.py", line 114, in _resolve_uri
+    raise ConfigurationError(str(exc)) from None
+pymongo.errors.ConfigurationError: The resolution lifetime expired after 21.616 seconds: Server Do53:186.16.16.16@53 answered The DNS operation timed out.; Server Do53:186.17.17.17@53 answered The DNS operation timed out.; Server Do53:186.16.16.16@53 answered The DNS operation timed out.; Server Do53:186.17.17.17@53 answered The DNS operation timed out.; Server Do53:186.16.16.16@53 answered The DNS operation timed out.; Server Do53:186.17.17.17@53 answered The DNS operation timed out.; Server Do53:186.16.16.16@53 answered The DNS operation timed out.; Server Do53:186.17.17.17@53 answered The DNS operation timed out.; Server Do53:186.16.16.16@53 answered The DNS operation timed out.; Server Do53:186.17.17.17@53 answered The DNS operation timed out.
+2024-11-21 10:29:00,268 ERROR: An error occurred: All nameservers failed to answer the query _mongodb._tcp.cluster0.t7ujr.mongodb.net. IN SRV: Server Do53:186.16.16.16@53 answered [WinError 10065] Se ha intentado una operación de socket en un host no accesible; Server Do53:186.17.17.17@53 answered [WinError 10065] Se ha intentado una operación de socket en un host no accesible [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 83, in get_last_image
+    return ImageController.get_last_image(camera_id)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\image_controller.py", line 20, in get_last_image
+    return GetLastImageUseCase().execute(camera_id)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\image_use_cases\get_last_image_use_case.py", line 5, in __init__
+    self.image_repository = ImageRepository()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\repositories\image_repository\image_repository.py", line 6, in __init__
+    self.image_service = image_service or ImageService()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\image_service.py", line 9, in __init__
+    self.db_client = get_mongo_client()
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\config\mongo_client.py", line 6, in get_mongo_client
+    client = MongoClient(current_app.config['MONGODB_URI'])
+  File "C:\Python310\lib\site-packages\pymongo\synchronous\mongo_client.py", line 780, in __init__
+    res = uri_parser.parse_uri(
+  File "C:\Python310\lib\site-packages\pymongo\uri_parser.py", line 558, in parse_uri
+    nodes = dns_resolver.get_hosts()
+  File "C:\Python310\lib\site-packages\pymongo\srv_resolver.py", line 140, in get_hosts
+    _, nodes = self._get_srv_response_and_hosts(True)
+  File "C:\Python310\lib\site-packages\pymongo\srv_resolver.py", line 120, in _get_srv_response_and_hosts
+    results = self._resolve_uri(encapsulate_errors)
+  File "C:\Python310\lib\site-packages\pymongo\srv_resolver.py", line 114, in _resolve_uri
+    raise ConfigurationError(str(exc)) from None
+pymongo.errors.ConfigurationError: All nameservers failed to answer the query _mongodb._tcp.cluster0.t7ujr.mongodb.net. IN SRV: Server Do53:186.16.16.16@53 answered [WinError 10065] Se ha intentado una operación de socket en un host no accesible; Server Do53:186.17.17.17@53 answered [WinError 10065] Se ha intentado una operación de socket en un host no accesible
+2024-11-21 19:08:44,755 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:08:59,199 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:09:02,815 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:09:04,463 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:09:15,139 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:09:18,107 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:09:27,479 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:10:05,560 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:10:09,980 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:10:13,881 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:12:50,093 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:13:39,072 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:13:55,575 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:13:57,908 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:14:40,483 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:14:56,415 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:15:03,427 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:16:19,465 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:17:45,953 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-21 19:18:51,829 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-22 20:58:59,611 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-23 14:44:29,684 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-23 15:39:14,641 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
+2024-11-24 19:16:58,174 INFO: Model status: STOPPED [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\model_service.py:64]
