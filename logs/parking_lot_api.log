@@ -933,3 +933,40 @@ Traceback (most recent call last):
     response = self.auth_repository.register_user(login_data=register_user)
                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 TypeError: AuthRepository.register_user() got an unexpected keyword argument 'login_data'
+2025-01-16 01:13:10,918 ERROR: An error occurred: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 854, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Python310\lib\site-packages\flask\app.py", line 463, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "C:\Python310\lib\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "C:\Python310\lib\site-packages\werkzeug\routing\map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-01-16 01:14:25,774 ERROR: An error occurred: name 'e' is not defined [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\auth_service.py", line 22, in login
+    access_token = jwt.encode({
+AttributeError: module 'jwt' has no attribute 'encode'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\routes.py", line 20, in login_user
+    return AuthController.login(data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\api\controllers\auth_controller.py", line 15, in login
+    return LoginUseCase().execute(login_data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\use_cases\auth_use_cases\login_use_case.py", line 9, in execute
+    response = self.auth_repository.login(login_data=login_data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\repositories\auth_repository\auth_repository.py", line 9, in login
+    return self.auth_service.login(login_data=login_data)
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\auth_service.py", line 32, in login
+    except (e):
+NameError: name 'e' is not defined

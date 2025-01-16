@@ -1,8 +1,8 @@
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from app.core.models.login_data import LoginData
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask import jsonify
+from flask import current_app, jsonify
 import jwt
 from app.config.config import Config
 from app.config.mongo_client import get_mongo_client
@@ -21,15 +21,16 @@ class AuthService(AuthInterface):
 
             access_token = jwt.encode({
                 'user_id': str(user['_id']),
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
-            }, Config['SECRET_KEY'], algorithm='HS256')
+                'exp': datetime.utcnow() + timedelta(minutes=30)
+            }, current_app.config['SECRET_KEY'], algorithm='HS256')
 
             refresh_token = jwt.encode({
                 'user_id': str(user['_id']),
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(days=7)
-            }, Config['SECRET_KEY'], algorithm='HS256')
+                'exp': datetime.utcnow() + timedelta(days=7)
+            }, current_app.config['SECRET_KEY'], algorithm='HS256')
             return jsonify({'success': True, 'access_token': access_token, 'refresh_token': refresh_token}), 200
-        except (e):
+        except Exception as e:
+            print(e)
             return jsonify({'success': False, 'message': 'An error occurred {e}'}), 500
 
     def register_user(self, login_data: LoginData):
@@ -59,7 +60,7 @@ class AuthService(AuthInterface):
     def refresh_token(self, refresh_token):
         try:
             # Decodificar el refresh token
-            decoded = jwt.decode(refresh_token, Config['SECRET_KEY'], algorithms=['HS256'])
+            decoded = jwt.decode(refresh_token, current_app.config['SECRET_KEY'], algorithms=['HS256'])
             user_id = decoded.get('user_id')
 
             # Verificar si el usuario existe en la base de datos
@@ -70,8 +71,8 @@ class AuthService(AuthInterface):
             # Generar un nuevo access token
             new_access_token = jwt.encode({
                 'user_id': str(user['_id']),
-                'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)
-            }, Config['SECRET_KEY'], algorithm='HS256')
+                'exp': datetime.utcnow() + timedelta(minutes=30)
+            }, current_app.config['SECRET_KEY'], algorithm='HS256')
 
             return jsonify({'success': True, 'access_token': new_access_token}), 200
         except jwt.ExpiredSignatureError:
