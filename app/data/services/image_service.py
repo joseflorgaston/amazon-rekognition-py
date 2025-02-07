@@ -7,12 +7,15 @@ from app.interfaces.image_interface import ImageInterface
 class ImageService(ImageInterface):
     def __init__(self):
         self.db_client = get_mongo_client()
+        self.images_collection = self.db_client["parking-lot"]["images"]
+        self.parking_spots_collection = self.db_client["parking-lot"]["parking_spots"]
+        self.cameras_collection = self.db_client["parking-lot"]["cameras"]
 
     # Retorna la ultima imagen guardada en la base de datos de una camara especifica:
     def get_last_image(self, camera_id: str):
         try:
             camera_object_id = ObjectId(camera_id)
-            collection = self.db_client['images']
+            collection = self.db_client["parking-lot"]["images"]
 
             last_image = collection.find_one(
                 {"camera_id": camera_object_id},
@@ -22,6 +25,7 @@ class ImageService(ImageInterface):
             # Check if an image was found
             if last_image:
                 last_image["_id"] = str(last_image["_id"])
+                last_image["parking_spot_id"] = str(last_image["camera_id"])
                 last_image["camera_id"] = str(last_image["camera_id"])
                 return jsonify({"data": last_image, "success": True, "message": "Last image retrieved successfully"}), 200
             else:

@@ -1,3 +1,4 @@
+from datetime import datetime
 from bson import ObjectId
 from flask import jsonify
 from app.config.mongo_client import get_mongo_client
@@ -8,18 +9,56 @@ class CameraService(CameraInterface):
     def __init__(self):
         self.db_client = get_mongo_client()
         self.camera_client = self.db_client["parking-lot"]["cameras"]
-
-    # Retorna las camaras guardadas en la base de datos.
+        self.parking_spot_client = self.db_client["parking-lot"]["parking_spot"]
+        
     def get_cameras(self):
         try:
+            # Obtener todas las cámaras
             result = self.camera_client.find()
             cameras = list(result)
-            
+
+            # Procesar cada cámara
+            processed_cameras = []
             for camera in cameras:
+                # Convertir IDs a strings
                 camera["_id"] = str(camera["_id"])
                 camera["parking_spot_id"] = str(camera["parking_spot_id"])
 
-            return jsonify({"data": cameras, "success": True, "message": "Cameras retrieved successfully"}), 200
+                # Obtener el parking spot asociado
+                parking_spot_id = camera["parking_spot_id"]
+                parking_spot = self.parking_spot_client.find_one({"_id": ObjectId(parking_spot_id)})
+
+                if parking_spot:
+                    # Convertir el parking spot a la estructura deseada
+                    processed_parking_spot = {
+                        "_id": str(parking_spot["_id"]),
+                        "address": parking_spot.get("address"),
+                        "created_at": parking_spot.get("created_at").strftime("%a, %d %b %Y %H:%M:%S GMT")
+                        if isinstance(parking_spot.get("created_at"), datetime)
+                        else parking_spot.get("created_at"),
+                        "location": parking_spot.get("location"),
+                        "name": parking_spot.get("name"),
+                    }
+                else:
+                    processed_parking_spot = None
+
+                # Construir la estructura final de la cámara
+                processed_camera = {
+                    "_id": camera["_id"],
+                    "created_at": camera.get("created_at").strftime("%a, %d %b %Y %H:%M:%S GMT")
+                    if isinstance(camera.get("created_at"), datetime)
+                    else camera.get("created_at"),
+                    "identifier": camera.get("identifier"),
+                    "image_interval": camera.get("image_interval"),
+                    "max_results": camera.get("max_results"),
+                    "parking_spot": processed_parking_spot,
+                    "parking_spot_id": camera["parking_spot_id"],
+                }
+
+                processed_cameras.append(processed_camera)
+
+            return jsonify({"data": processed_cameras, "success": True, "message": "Cameras retrieved successfully"}), 200
+
         except Exception as e:
             print(f"Error retrieving cameras: {e}")
             return jsonify({"success": False, "message": "Failed to retrieve cameras"}), 500

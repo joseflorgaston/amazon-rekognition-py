@@ -970,3 +970,47 @@ Traceback (most recent call last):
   File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\data\services\auth_service.py", line 32, in login
     except (e):
 NameError: name 'e' is not defined
+2025-02-07 00:26:30,507 ERROR: An error occurred: 405 Method Not Allowed: The method is not allowed for the requested URL. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 854, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Python310\lib\site-packages\flask\app.py", line 463, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "C:\Python310\lib\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "C:\Python310\lib\site-packages\werkzeug\routing\map.py", line 624, in match
+    raise MethodNotAllowed(valid_methods=list(e.have_match_for)) from None
+werkzeug.exceptions.MethodNotAllowed: 405 Method Not Allowed: The method is not allowed for the requested URL.
+2025-02-07 00:26:30,716 ERROR: An error occurred: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again. [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 854, in dispatch_request
+    self.raise_routing_exception(req)
+  File "C:\Python310\lib\site-packages\flask\app.py", line 463, in raise_routing_exception
+    raise request.routing_exception  # type: ignore[misc]
+  File "C:\Python310\lib\site-packages\flask\ctx.py", line 362, in match_request
+    result = self.url_adapter.match(return_rule=True)  # type: ignore
+  File "C:\Python310\lib\site-packages\werkzeug\routing\map.py", line 629, in match
+    raise NotFound() from None
+werkzeug.exceptions.NotFound: 404 Not Found: The requested URL was not found on the server. If you entered the URL manually please check your spelling and try again.
+2025-02-07 00:55:04,532 ERROR: An error occurred: get_cameras() takes 0 positional arguments but 1 was given [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\decorators\token_required.py", line 27, in decorated
+    return f(current_user, *args, **kwargs)
+TypeError: get_cameras() takes 0 positional arguments but 1 was given
+2025-02-07 00:55:05,181 ERROR: An error occurred: get_cameras() takes 0 positional arguments but 1 was given [in C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\main.py:27]
+Traceback (most recent call last):
+  File "C:\Python310\lib\site-packages\flask\app.py", line 880, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Python310\lib\site-packages\flask\app.py", line 865, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)  # type: ignore[no-any-return]
+  File "C:\Users\User\Documents\Tesis\parking_lot_api\new api\app\core\decorators\token_required.py", line 27, in decorated
+    return f(current_user, *args, **kwargs)
+TypeError: get_cameras() takes 0 positional arguments but 1 was given

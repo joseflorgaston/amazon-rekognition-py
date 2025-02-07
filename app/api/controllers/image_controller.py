@@ -42,13 +42,14 @@ class ImageController:
             )
         )
 
-        labels = DetectLabelsUseCase().execute(image_data)
+        # labels = DetectLabelsUseCase().execute(image_data)
         
         image_pil = Image.open(BytesIO(image_data))
         image_labeled = ImageHelper().draw_labels_to_image(
             DrawLabelsData(
                 image= image_pil,
-                labels= labels
+                # labels= labels
+                labels= []
             )
         )
 
