@@ -6,6 +6,7 @@ from app.api.controllers.camera_controller import CameraController
 from app.api.controllers.image_controller import ImageController
 from app.api.controllers.model_controller import ModelController
 from app.api.controllers.parking_spot_controller import ParkingSpotController
+from app.api.controllers.yolo_controller import predict_image
 routes = Blueprint('routes', __name__)
 
 @routes.route('/detect_labels', methods=['POST'])
@@ -131,3 +132,9 @@ def upload_image(current_user):
 @token_required.token_required
 def deleteImage(current_user, image_id):
     return ImageController.delete_image(image_id)
+
+
+@routes.route('/yolo/predict', methods=['POST'])
+def yolo_predict():
+    return predict_image()
+
